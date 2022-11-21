@@ -5,6 +5,7 @@ import 'package:todo_list/constants/app_bar.dart';
 import 'package:todo_list/constants/colors.dart';
 import 'package:todo_list/constants/sized_box.dart';
 import 'package:todo_list/models/users_data.dart';
+import 'package:todo_list/screens/to_do.dart';
 import 'package:todo_list/widgets/material_button.dart';
 import 'package:todo_list/widgets/text_field_widget.dart';
 
@@ -44,6 +45,9 @@ class CreateTask extends HookWidget {
             title: 'Create list',
             context: context,
             leading: true,
+            onTap: () {
+              Navigator.pushReplacementNamed(context, ToDoList.id);
+            },
             color: ColorX.orange),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0),

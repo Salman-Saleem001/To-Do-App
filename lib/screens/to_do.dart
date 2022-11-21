@@ -36,10 +36,11 @@ class ToDoList extends HookWidget {
         ),
         backgroundColor: const Color(ColorX.redWhite),
         appBar: buildAppBar(
-            title: selectedIndex.value == 0 ? 'To Do List' : 'Account Details',
-            context: context,
-            leading: false,
-            color: ColorX.orange),
+          title: selectedIndex.value == 0 ? 'To Do List' : 'Account Details',
+          context: context,
+          leading: false,
+          color: ColorX.orange,
+        ),
         body: onTap[selectedIndex.value],
         bottomNavigationBar: BottomNavigationBar(
           items: const [

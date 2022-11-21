@@ -2,16 +2,17 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:todo_list/constants/sized_box.dart';
 import 'package:todo_list/models/users_data.dart';
-import 'package:todo_list/screens/onboard_screen.dart';
 import 'package:todo_list/widgets/GetTile.dart';
 
 import '../constants/colors.dart';
 import '../constants/constants.dart';
 import '../models/account_data.dart';
+import '../screens/onboard_screen.dart';
 import 'alert_dialog.dart';
 
 class AccountDetails extends HookWidget {
@@ -72,13 +73,11 @@ class AccountDetails extends HookWidget {
                 onPressed: Platform.isAndroid
                     ? () => showDialog(
                           context: context,
-                          builder: (BuildContext context) =>
-                              getAccountDeleteAlert(context),
+                          builder: (context) => getAccountDeleteAlert(context),
                         )
                     : () => showCupertinoModalPopup(
                           context: context,
-                          builder: (BuildContext context) =>
-                              getAccountDeleteAlert(context),
+                          builder: (context) => getAccountDeleteAlert(context),
                         ),
               ),
               GetTile(
@@ -87,13 +86,11 @@ class AccountDetails extends HookWidget {
                 onPressed: Platform.isAndroid
                     ? () => showDialog(
                           context: context,
-                          builder: (BuildContext context) =>
-                              getLogoutAlert(context, user),
+                          builder: (context) => getLogoutAlert(context, user),
                         )
                     : () => showCupertinoModalPopup(
                           context: context,
-                          builder: (BuildContext context) =>
-                              getLogoutAlert(context, user),
+                          builder: (context) => getLogoutAlert(context, user),
                         ),
               ),
             ],
@@ -107,7 +104,8 @@ class AccountDetails extends HookWidget {
       onTap: () {
         Provider.of<UserData>(context, listen: false).removeEmailPassword();
         Provider.of<UserData>(context, listen: false).deleteList();
-        Navigator.pushReplacementNamed(context, OnBoardScreen.id);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil(OnBoardScreen.id, (route) => false);
       },
       buttonText: 'Delete',
     );
@@ -120,7 +118,8 @@ class AccountDetails extends HookWidget {
       onTap: () {
         Provider.of<UserData>(context, listen: false).setAccountDetails(
             user.value.name!, user.value.email!, user.value.password!, false);
-        Navigator.pushReplacementNamed(context, OnBoardScreen.id);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil(OnBoardScreen.id, (route) => false);
       },
       buttonText: 'Logout',
     );

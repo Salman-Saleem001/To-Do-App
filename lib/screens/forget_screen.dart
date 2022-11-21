@@ -3,13 +3,13 @@ import 'dart:io' show Platform;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_list/screens/onboard_screen.dart';
 import 'package:todo_list/widgets/alert_dialog.dart';
 import 'package:todo_list/widgets/material_button.dart';
 
 import '../constants/colors.dart';
 import '../models/users_data.dart';
 import '../widgets/logo_icon.dart';
-import 'onboard_screen.dart';
 
 class ForgetScreen extends StatelessWidget {
   static const String id = 'ForgetScreen';
@@ -42,13 +42,11 @@ class ForgetScreen extends StatelessWidget {
                 onTap: Platform.isAndroid
                     ? () => showDialog(
                           context: context,
-                          builder: (BuildContext context) =>
-                              getAccountDeleteAlert(context),
+                          builder: (context) => getAccountDeleteAlert(context),
                         )
                     : () => showCupertinoModalPopup(
                           context: context,
-                          builder: (BuildContext context) =>
-                              getAccountDeleteAlert(context),
+                          builder: (context) => getAccountDeleteAlert(context),
                         ),
               ),
             )
@@ -65,7 +63,8 @@ class ForgetScreen extends StatelessWidget {
       onTap: () {
         Provider.of<UserData>(context, listen: false).removeEmailPassword();
         Provider.of<UserData>(context, listen: false).deleteList();
-        Navigator.pushReplacementNamed(context, OnBoardScreen.id);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil(OnBoardScreen.id, (route) => false);
       },
       buttonText: 'Delete',
     );

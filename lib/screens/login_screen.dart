@@ -34,7 +34,12 @@ class LoginScreen extends HookWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(ColorX.redWhite),
-        appBar: buildAppBar(title: 'Login', context: context),
+        appBar: buildAppBar(
+            title: 'Login',
+            context: context,
+            onTap: () {
+              Navigator.pop(context);
+            }),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Form(
@@ -84,7 +89,8 @@ class LoginScreen extends HookWidget {
                                   true);
                           emailController.clear();
                           passwordController.clear();
-                          Navigator.pushReplacementNamed(context, ToDoList.id);
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              ToDoList.id, (route) => false);
                         } else if (user?.email == null &&
                             user?.password == null) {
                           getToast("No user has been initialized yet");

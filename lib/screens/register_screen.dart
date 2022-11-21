@@ -37,7 +37,12 @@ class RegisterScreen extends HookWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(ColorX.redWhite),
-        appBar: buildAppBar(title: 'Register', context: context),
+        appBar: buildAppBar(
+            title: 'Register',
+            context: context,
+            onTap: () {
+              Navigator.pop(context);
+            }),
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Form(
@@ -102,7 +107,8 @@ class RegisterScreen extends HookWidget {
                           emailController.clear();
                           nameController.clear();
                           passwordController.clear();
-                          Navigator.pushReplacementNamed(context, ToDoList.id);
+                          Navigator.of(context).pushNamedAndRemoveUntil(
+                              ToDoList.id, (route) => false);
                         }
                       }
                     },

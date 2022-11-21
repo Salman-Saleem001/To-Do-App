@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:todo_list/constants/colors.dart';
-import 'package:todo_list/screens/to_do.dart';
 
-AppBar buildAppBar(
-    {required String title,
-    required BuildContext context,
-    int color = ColorX.primary,
-    bool leading = true}) {
+AppBar buildAppBar({
+  required String title,
+  required BuildContext context,
+  int color = ColorX.primary,
+  bool leading = true,
+  VoidCallback? onTap,
+}) {
   return AppBar(
     backgroundColor: const Color(ColorX.redWhite),
     automaticallyImplyLeading: false,
@@ -14,9 +15,7 @@ AppBar buildAppBar(
         ? Padding(
             padding: const EdgeInsets.only(top: 20.0),
             child: IconButton(
-              onPressed: () {
-                Navigator.pushReplacementNamed(context, ToDoList.id);
-              },
+              onPressed: onTap,
               icon: const Icon(
                 Icons.arrow_back_ios,
                 color: Color(ColorX.primary),
