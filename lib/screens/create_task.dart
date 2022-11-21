@@ -65,6 +65,7 @@ class CreateTask extends HookWidget {
                     return null;
                   },
                   sizeHeight: sizeHeight,
+                  keyboardType: TextInputType.multiline,
                   iconData: Icons.list,
                   hint: 'Write your to do',
                 ),

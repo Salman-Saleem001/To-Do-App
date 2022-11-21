@@ -12,6 +12,7 @@ class TextFieldWidget extends StatelessWidget {
     this.obscure = false,
     this.controller,
     this.validate,
+    this.keyboardType = TextInputType.text,
   });
 
   final double sizeHeight;
@@ -20,12 +21,17 @@ class TextFieldWidget extends StatelessWidget {
   final bool? obscure;
   final TextEditingController? controller;
   final String? Function(String?)? validate;
+  final TextInputType keyboardType;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       autofocus: true,
       showCursor: true,
+      minLines:
+          keyboardType == TextInputType.multiline ? sizeHeight ~/ 700 : null,
+      maxLines: keyboardType == TextInputType.multiline ? null : 1,
+      keyboardType: keyboardType,
       validator: validate,
       controller: controller!,
       obscureText: obscure!,
@@ -37,7 +43,8 @@ class TextFieldWidget extends StatelessWidget {
       cursorHeight: 20.0,
       cursorRadius: const Radius.circular(15.0),
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.only(top: 10.0),
+        contentPadding: EdgeInsets.only(
+            top: keyboardType == TextInputType.text ? 10.0 : 5.0, right: 10.0),
         prefixIcon: Icon(
           iconData,
           size: 15.0,

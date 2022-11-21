@@ -71,6 +71,7 @@ class RegisterScreen extends HookWidget {
                 getSizedBox(sizeHeight),
                 TextFieldWidget(
                   controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
                   sizeHeight: sizeHeight,
                   iconData: Icons.email,
                   hint: 'Email',

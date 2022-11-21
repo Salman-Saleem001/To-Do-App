@@ -51,6 +51,7 @@ class ConsumerWidget extends HookWidget {
                     title: Text(
                       userData.getTodo()[reversedIndex]!,
                       textAlign: TextAlign.start,
+                      maxLines: 4,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,

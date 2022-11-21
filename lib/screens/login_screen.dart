@@ -55,6 +55,7 @@ class LoginScreen extends HookWidget {
                 ),
                 TextFieldWidget(
                   controller: emailController,
+                  keyboardType: TextInputType.emailAddress,
                   validate: validateEmail,
                   sizeHeight: sizeHeight,
                   iconData: Icons.email,
