@@ -59,7 +59,7 @@ class CreateTask extends HookWidget {
                 TextFieldWidget(
                   controller: controller,
                   validate: (val) {
-                    if (val!.isEmpty) {
+                    if (val!.isEmpty && val.trim().isEmpty) {
                       return 'This field cannot be Empty';
                     }
                     return null;
